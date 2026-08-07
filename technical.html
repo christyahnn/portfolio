@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical — Christy Ahn</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">Christy Ahn <span>·</span> Portfolio</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="consulting.html">Consulting</a></li>
+        <li><a href="technical.html" aria-current="page">Technical</a></li>
+        <li><a href="psych.html">Behavioral Psych</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding-bottom: 12px;">
+    <div class="wrap">
+      <p class="eyebrow">TEC — Technical</p>
+      <h1 class="hero-title" style="max-width: 20ch;">Data &amp; analytics projects</h1>
+      <p class="hero-sub">
+        Applied data science work — from feature engineering through model
+        selection to business recommendations. Full write-ups and figures are
+        available to download; source code stays in the repo.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+
+      <!-- TEC-01 -->
+      <article class="case">
+        <div class="case-top">
+          <span class="case-code">TEC-01</span>
+          <span class="case-meta">ECON 122 &middot; Final Project</span>
+        </div>
+        <h3 class="case-title">Flight Tracking Analysis</h3>
+
+        <dl class="case-grid">
+          <div class="case-field">
+            <dt>Dataset</dt>
+            <dd>10,000 U.S. commercial flights (2024 sample)</dd>
+          </div>
+          <div class="case-field">
+            <dt>Method</dt>
+            <dd>EDA, gradient boosting, PCA, linear regression</dd>
+          </div>
+          <div class="case-field">
+            <dt>Outcome</dt>
+            <dd>Identified operational (not weather) as top delay driver</dd>
+          </div>
+        </dl>
+
+        <div class="case-body">
+          <p><strong>Question.</strong> Where, when, and why do U.S. flights get delayed or cancelled — and can that be predicted?</p>
+          <p><strong>Method.</strong> Explored delay/cancellation patterns by carrier, route, time, and geography, then modeled delay occurrence (boosting, PCA) and delay length (linear regression) separately once class imbalance limited the first approach.</p>
+          <p><strong>Finding.</strong> Late-aircraft and carrier-controlled delays outweighed weather as root causes; delays concentrated at major hubs (DFW, ATL, DEN) and in the Eastern U.S., with peak season adding 6.3 minutes of delay on average versus the shoulder season.</p>
+        </div>
+
+        <ul class="tags">
+          <li>R</li>
+          <li>Exploratory Data Analysis</li>
+          <li>Gradient Boosting</li>
+          <li>Geospatial Visualization</li>
+        </ul>
+
+        <a class="case-download" href="assets/reports/Flight%20Tracking%20Analysis%20Report.pdf" download>
+          Download full report <span class="arrow">→</span>
+        </a>
+        <span class="case-download-note">PDF · 2 pages · write-up and figures, no source code</span>
+      </article>
+
+      <!-- TEC-02 -->
+      <article class="case">
+        <div class="case-top">
+          <span class="case-code">TEC-02</span>
+          <span class="case-meta">Independent Project &middot; R</span>
+        </div>
+        <h3 class="case-title">Credit Risk Analysis</h3>
+
+        <dl class="case-grid">
+          <div class="case-field">
+            <dt>Dataset</dt>
+            <dd>5,000+ loan applications (training + test)</dd>
+          </div>
+          <div class="case-field">
+            <dt>Method</dt>
+            <dd>Logistic regression, random forest, gradient boosting</dd>
+          </div>
+          <div class="case-field">
+            <dt>Outcome</dt>
+            <dd>0.88 AUC (acceptance); $1.34M expected profit on test loans</dd>
+          </div>
+        </dl>
+
+        <div class="case-body">
+          <p><strong>Question.</strong> Which borrowers should be approved, at what interest rate, to maximize profit while managing default risk?</p>
+          <p><strong>Method.</strong> Engineered four risk-relevant features, then compared four supervised models by cross-validated AUC before selecting gradient boosting as the final model.</p>
+          <p><strong>Finding.</strong> Boosting reached 0.88 AUC on acceptance and 0.72 on default — used to set a per-borrower profit-maximizing interest rate and approve/deny policy, producing $1.34M in expected profit across 1,000 test loans.</p>
+        </div>
+
+        <ul class="tags">
+          <li>R</li>
+          <li>Predictive Modeling</li>
+          <li>Feature Engineering</li>
+          <li>Gradient Boosting</li>
+        </ul>
+
+        <a class="case-download" href="assets/reports/Credit%20Risk%20Analysis%20Report.pdf" download>
+          Download full report <span class="arrow">→</span>
+        </a>
+        <span class="case-download-note">PDF · 2 pages · write-up and figures, no source code</span>
+      </article>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; 2026 Christy Ahn. Built for PM &amp; consulting roles.</p>
+</footer>
+
+</body>
+</html>
