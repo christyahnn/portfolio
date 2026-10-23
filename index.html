@@ -9,10 +9,10 @@
 <style>
   /* Page background, text colors and fonts come from your style.css. Only the folders have their own colors. */
 
-  .cover-section { width: min(92%, 900px); margin: 24px auto 0; }
+  .cover-section { width: min(92%, 900px); margin: 48px auto 0; }
 
   .cover {
-    --step: 64px;
+    --step: 76px;
     --back-h: calc(var(--step) * 3);
     position: relative;
     padding: var(--back-h) 0 24px;
@@ -116,42 +116,48 @@
     filter: drop-shadow(0 -3px 6px rgba(0, 0, 0, 0.25));
   }
   .front-body {
+    position: relative;
+    z-index: 1;
     margin-top: var(--tab-h);
-    padding: clamp(20px, 3.5vw, 36px) clamp(24px, 5vw, 56px) clamp(20px, 3vw, 28px);
+    padding: clamp(28px, 5vw, 56px) clamp(24px, 5vw, 56px) clamp(24px, 4vw, 40px);
     border-radius: 14px;
     background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.12)), var(--c);
     box-shadow: 0 6px 0 -2px #8a2a30, 0 12px 0 -4px #741f25;
   }
   .front h1 {
+    position: relative;
+    z-index: 2;
     margin: 0;
     max-width: none;
     color: inherit;
-    font-size: clamp(2.4rem, 7vw, 4.2rem);
-    line-height: 0.95;
+    font-size: clamp(2.8rem, 9vw, 5.6rem);
+    line-height: 1.02;
   }
   .front .major {
-    margin: 14px 0 0;
+    position: relative;
+    z-index: 2;
+    margin: 20px 0 0;
     color: inherit;
     max-width: 28ch;
     font-size: clamp(1rem, 2.2vw, 1.3rem);
     line-height: 1.35;
   }
-  .front-foot { display: flex; align-items: center; gap: 14px; margin-top: 28px; font-size: 0.95rem; }
+  .front-foot { display: flex; align-items: center; gap: 14px; margin-top: 44px; font-size: 0.95rem; }
   .front-foot .line { flex: 1; height: 1.5px; background: currentColor; opacity: 0.7; }
 
   /* ---------- Toolkit and connect button ---------- */
-  .tools-section { margin-top: 24px; }
-  .tools-section .ticker-band { margin-top: 24px; }
-  .connect { display: flex; justify-content: center; padding: 28px 0 20px; }
+  .tools-section { margin-top: 72px; }
+  .tools-section .ticker-band { margin-top: 56px; }
+  .connect { display: flex; justify-content: center; padding: 48px 0 24px; }
 
   @media (max-width: 720px) {
-    .cover { --step: 56px; }
+    .cover { --step: 62px; }
     .cover-section { margin-top: 32px; }
     .folder { --tab-h: 42px; --tab-w: 38%; }
     .front { --tab-h: 48px; --tab-w: 34%; }
     .tab { padding: 0 10px; font-size: 0.95rem; white-space: normal; }
     .b3 { --tab-x: 54%; }
-    .front-foot { margin-top: 24px; }
+    .front-foot { margin-top: 32px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .folder, .paper { transition: none; }
