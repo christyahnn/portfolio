@@ -5,27 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Christy Ahn — Portfolio</title>
 <meta name="description" content="Portfolio of consulting, data & analytics, and behavioral research work.">
+<link rel="stylesheet" href="css/style.css">
 <style>
   /* Page background and text colors come from your style.css. Only the folders have their own colors. */
 
   .cover-section { width: min(92%, 900px); margin: 48px auto 0; }
 
   .cover {
-    --step: 76px;                      /* vertical spacing between folder tabs */
-    --back-h: calc(var(--step) * 4);   /* height of the stack behind the front folder */
+    --step: 76px;
+    --back-h: calc(var(--step) * 4);
     position: relative;
     padding: var(--back-h) 0 24px;
     overflow: hidden;
   }
 
-  /* ---------- Tabs (shared by back folders and the front folder) ---------- */
+  /* ---------- Tabs ---------- */
   .tab {
     position: absolute;
     top: 0;
     left: var(--tab-x);
     z-index: 2;
     width: var(--tab-w);
-    min-height: calc(var(--tab-h) + 1px); /* 1px overlap hides the seam with the body */
+    min-height: calc(var(--tab-h) + 1px);
     display: flex;
     align-items: center;
     padding: 0 20px;
@@ -37,7 +38,6 @@
     line-height: 1.1;
     white-space: nowrap;
   }
-  /* Curved shoulders where the tab meets the folder */
   .tab::before, .tab::after { content: ""; position: absolute; bottom: 0; width: 14px; height: 14px; }
   .tab::before { left: -14px;  background: radial-gradient(circle at 0 0,    transparent 13.5px, var(--c) 14px); }
   .tab::after  { right: -14px; background: radial-gradient(circle at 100% 0, transparent 13.5px, var(--c) 14px); }
@@ -57,13 +57,11 @@
     filter: drop-shadow(0 -2px 4px rgba(0, 0, 0, 0.2));
     transition: transform 0.38s cubic-bezier(.3,1.3,.5,1), filter 0.3s ease;
   }
-  /* Muted reds, lightest at the back. Change --c to recolor, --ink for text color. */
   .b1 { top: 0;                       --c: #d9a39a; --ink: #2b1012; --tab-x: 58%; }
   .b2 { top: calc(var(--step) * 1);   --c: #cf8a84; --ink: #2b1012; --tab-x: 5%;  }
   .b3 { top: calc(var(--step) * 2);   --c: #c0716f; --ink: #2b1012; --tab-x: 50%; }
   .b4 { top: calc(var(--step) * 3);   --c: #ad5659; --ink: #fff4f1; --tab-x: 24%; }
 
-  /* Small accent tab beside each label, like the green nubs in the reference */
   .folder::before {
     content: "";
     position: absolute;
@@ -85,7 +83,6 @@
     background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1)), var(--c);
   }
 
-  /* White sheet peeking out of each folder */
   .paper {
     position: absolute;
     top: calc(var(--tab-h) - 8px);
@@ -97,7 +94,6 @@
     transition: transform 0.4s cubic-bezier(.3,1.4,.5,1) 0.05s;
   }
 
-  /* Pull a folder up to open it */
   a.folder:hover,
   a.folder:focus-visible {
     transform: translateY(-22px);
@@ -108,7 +104,7 @@
   a.folder:focus-visible { outline: none; }
   a.folder:focus-visible .sheet { outline: 3px solid currentColor; outline-offset: 3px; }
 
-  /* ---------- Front folder (the cover) ---------- */
+  /* ---------- Front folder ---------- */
   .front {
     --c: #a3333a;
     --ink: #fff4f1;
@@ -125,7 +121,6 @@
     padding: clamp(28px, 5vw, 56px) clamp(24px, 5vw, 56px) clamp(24px, 4vw, 40px);
     border-radius: 14px;
     background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.12)), var(--c);
-    /* thin stacked edges under the folder, like the reference */
     box-shadow: 0 6px 0 -2px #8a2a30, 0 12px 0 -4px #741f25;
   }
   .front h1 {
@@ -187,7 +182,6 @@
   <section class="cover-section">
     <div class="cover" id="work">
 
-      <!-- Decorative folder to fill out the stack -->
       <div class="folder b1 nub-r" aria-hidden="true">
         <span class="tab"></span>
         <span class="paper"></span>
@@ -212,7 +206,6 @@
         <span class="sheet"></span>
       </a>
 
-      <!-- Front folder: the cover -->
       <div class="front">
         <span class="tab">Portfolio</span>
         <div class="front-body">
