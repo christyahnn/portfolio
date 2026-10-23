@@ -7,218 +7,67 @@
 <meta name="description" content="Portfolio of consulting, data & analytics, and behavioral research work.">
 <link rel="stylesheet" href="css/style.css">
 <style>
-  /* Additive only: no hard-coded colors, so your palette in style.css carries through. */
-  :root { --paper: Canvas; } /* replaced with your real page background by the script below */
+  /* Page background and text colors come from your style.css. Only the folders have their own colors. */
 
   .drawer {
     position: relative;
-    height: 380px;
+    height: 410px;
     margin-top: 64px;
     /* Clip the bottom only, so lifted folders and paper can rise above the top edge */
-    clip-path: inset(-80px -12px 0 -12px);
+    clip-path: inset(-90px -16px 0 -16px);
   }
 
   .folder {
-    --edge: color-mix(in srgb, currentColor 28%, transparent);
+    --tab-h: 58px;
     --tab-w: 31%;
-    --tab-h: 46px;
     position: absolute;
     left: 0; right: 0;
     bottom: -40px;
     display: block;
-    color: inherit;
+    color: #fff4f1;
     text-decoration: none;
     isolation: isolate;
-    transition: transform 0.38s cubic-bezier(.3,1.3,.5,1);
+    filter: drop-shadow(0 -3px 6px rgba(0, 0, 0, 0.22));
+    transition: transform 0.38s cubic-bezier(.3,1.3,.5,1), filter 0.3s ease;
   }
-  .f1 { top: 0;     --tint: 7%;  --tab-x: 3%;  z-index: 1; }
-  .f2 { top: 110px; --tint: 13%; --tab-x: 35%; z-index: 2; }
-  .f3 { top: 220px; --tint: 20%; --tab-x: 67%; z-index: 3; }
+  /* Muted reds, lightest at the back to deepest at the front */
+  .f1 { top: 0;     --c: #b8595f; --tab-x: 3%;  z-index: 1; }
+  .f2 { top: 120px; --c: #9c3d44; --tab-x: 35%; z-index: 2; }
+  .f3 { top: 240px; --c: #7a2a30; --tab-x: 67%; z-index: 3; }
 
   .folder:hover,
-  .folder:focus-visible { transform: translateY(-24px); }
+  .folder:focus-visible {
+    transform: translateY(-24px);
+    filter: drop-shadow(0 -4px 10px rgba(0, 0, 0, 0.3)) brightness(1.08);
+  }
   .folder:focus-visible { outline: none; }
-  .folder:focus-visible .sheet { outline: 2px solid currentColor; outline-offset: 3px; }
+  .folder:focus-visible .sheet { outline: 3px solid currentColor; outline-offset: 3px; }
 
   /* Folder body */
   .sheet {
     position: absolute;
     top: var(--tab-h); left: 0; right: 0; bottom: 0;
     z-index: 1;
-    padding: 16px 22px;
-    border: 1px solid var(--edge);
-    border-radius: 0 16px 0 0;
-    background: color-mix(in srgb, currentColor var(--tint), var(--paper));
+    padding: 18px 28px;
+    border-radius: 12px 12px 0 0;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.14)), var(--c);
   }
-  .f1 .sheet { border-radius: 0 16px 0 0; }
-  .f2 .sheet, .f3 .sheet { border-radius: 16px 16px 0 0; }
 
-  /* Tab */
+  /* Tab with curved shoulders, like a real folder */
   .tab {
     position: absolute;
     top: 0;
     left: var(--tab-x);
     z-index: 2;
     width: var(--tab-w);
-    min-height: var(--tab-h);
+    min-height: calc(var(--tab-h) + 1px); /* 1px overlap hides the seam with the body */
     display: flex;
     align-items: center;
-    padding: 6px 16px;
-    border: 1px solid var(--edge);
-    border-bottom: 0;
+    padding: 0 22px;
     border-radius: 14px 14px 0 0;
-    background: color-mix(in srgb, currentColor var(--tint), var(--paper));
+    background: var(--c);
     font-weight: 700;
-    font-size: clamp(0.85rem, 1.7vw, 1.15rem);
-    line-height: 1.15;
-    margin-bottom: -1px; /* hides the seam where tab meets body */
-    transition: background 0.25s ease, color 0.25s ease;
-  }
-  .folder:hover .tab,
-  .folder:focus-visible .tab { background: currentColor; }
-  .folder:hover .tab-label,
-  .folder:focus-visible .tab-label { color: var(--paper); }
-
-  /* Strip text on the folder body */
-  .cap {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-    font-size: 0.95rem;
-  }
-  .cap .what { opacity: 0.7; }
-  .cap .go { opacity: 0; transform: translateX(-6px); transition: opacity 0.25s ease, transform 0.25s ease; font-weight: 700; }
-  .folder:hover .go,
-  .folder:focus-visible .go { opacity: 1; transform: none; }
-
-  /* Sheet of paper that slides out of the folder */
-  .paper {
-    position: absolute;
-    top: var(--tab-h);
-    right: 7%;
-    width: 34%;
-    height: 90px;
-    z-index: 0;
-    border: 1px solid var(--edge);
-    border-radius: 8px 8px 0 0;
-    background:
-      repeating-linear-gradient(to bottom, transparent 0 11px,
-        color-mix(in srgb, currentColor 14%, transparent) 11px 12px),
-      var(--paper);
-    background-size: auto, auto;
-    background-position: 0 14px, 0 0;
-    transition: transform 0.4s cubic-bezier(.3,1.4,.5,1) 0.05s;
-  }
-  .folder:hover .paper,
-  .folder:focus-visible .paper { transform: translateY(-34px); }
-
-  @media (max-width: 720px) {
-    .drawer { height: 330px; margin-top: 44px; }
-    .f2 { top: 96px; }
-    .f3 { top: 192px; }
-    .folder { --tab-h: 44px; --tab-w: 34%; }
-    .f1 { --tab-x: 2%; }
-    .f2 { --tab-x: 33%; }
-    .f3 { --tab-x: 64%; }
-    .tab { padding: 6px 10px; }
-    .cap .go { display: none; }
-    .paper { width: 40%; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .folder, .tab, .paper, .cap .go { transition: none; }
-  }
-
-  /* Toolkit block + connect button */
-  .tools-section .tools-head { margin-bottom: 0; }
-  .connect { display: flex; justify-content: center; padding: 48px 0 24px; }
-</style>
-</head>
-<body>
-
-<header class="site-header">
-  <div class="header-inner">
-    <a class="brand" href="index.html">Christy Ahn <span>·</span> Portfolio</a>
-    <nav class="site-nav" aria-label="Primary">
-      <ul>
-        <li><a href="index.html" aria-current="page">Home</a></li>
-        <li><a href="consulting.html">Consulting</a></li>
-        <li><a href="technical.html">Technical</a></li>
-        <li><a href="psych.html">Behavioral Psych</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <section class="hero">
-    <div class="wrap">
-      <h1 class="hero-title">Christy Ahn</h1>
-      <p class="hero-tagline">Economics, Psychology, and Data Science, aimed at making better decisions.</p>
-
-      <div class="drawer" id="work">
-
-        <a class="folder f1" href="consulting.html" aria-label="Consulting projects">
-          <span class="tab"><span class="tab-label">Consulting</span></span>
-          <span class="paper" aria-hidden="true"></span>
-          <span class="sheet">
-            <span class="cap"><span class="what">Case work</span><span class="go">View projects</span></span>
-          </span>
-        </a>
-
-        <a class="folder f2" href="technical.html" aria-label="Technical projects">
-          <span class="tab"><span class="tab-label">Technical</span></span>
-          <span class="paper" aria-hidden="true"></span>
-          <span class="sheet">
-            <span class="cap"><span class="what">Data science</span><span class="go">View projects</span></span>
-          </span>
-        </a>
-
-        <a class="folder f3" href="psych.html" aria-label="Behavioral psychology studies">
-          <span class="tab"><span class="tab-label">Behavioral Psych</span></span>
-          <span class="paper" aria-hidden="true"></span>
-          <span class="sheet">
-            <span class="cap"><span class="what">Research studies</span><span class="go">View studies</span></span>
-          </span>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="tools-section">
-    <div class="wrap tools-head">
-      <h2 class="section-title">Platforms I know my way around</h2>
-    </div>
-    <div class="ticker-band" aria-label="Tools and platforms">
-      <div class="ticker-track" id="ticker-track"></div>
-    </div>
-  </section>
-
-  <div class="connect">
-    <a class="btn primary" href="contact.html">Let's Connect!</a>
-  </div>
-</main>
-
-<footer class="site-footer">
-  <p>&copy; 2026 Christy Ahn</p>
-</footer>
-
-<script src="js/main.js"></script>
-<script>
-  // Match the folders' "paper" color to the page background so they stay solid in your palette.
-  (function () {
-    var el = document.querySelector('.drawer');
-    while (el) {
-      var bg = getComputedStyle(el).backgroundColor;
-      if (bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)') {
-        document.documentElement.style.setProperty('--paper', bg);
-        return;
-      }
-      el = el.parentElement;
-    }
-  })();
-</script>
-</body>
-</html>
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
